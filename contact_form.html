@@ -1,0 +1,137 @@
+<div ng-controller="addContactCtrl">
+  <div class="row">
+    <div class="container-fluid list-group-item">
+        <div class="col-sm-8">
+          <form role="form" name="form" class="example-form" novalidate>
+              
+              <div class="form-group">
+                  <label class="control-label" for="form-fname">First Name</label>
+                  <input
+                      id="form-fname"
+                      name="fname"
+                      class="form-control"
+                      type="text"
+                      placeholder="Enter First Name"
+                      ng-model="currentContact.fname"
+                      required
+                  >
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label" for="form-lname">Last Name</label>
+                  <input
+                      id="form-lname"
+                      name="lname"
+                      class="form-control"
+                      type="text"
+                      placeholder="Enter Last Name"
+                      ng-model="currentContact.lname"
+                      required
+                  >
+              </div>
+              
+              <div class="form-group" ng-controller="dtCtrl">
+                  <label class="control-label" for="form-dt">Birth Day</label>
+                  <input 
+                      id="form-dt"
+                      name="dt"
+                      class="form-control"
+                      type="date"
+                      placeholder="MM/DD/YYYY"
+                      ng-model="currentContact.dt"
+                      required
+                  >
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label" for="form-company">Company</label>
+                  <input
+                      id="form-company"
+                      name="company"
+                      class="form-control"
+                      type="text"
+                      placeholder="Enter Company"
+                      ng-model="currentContact.company"
+                      required
+                  >
+              </div>
+              
+              
+              
+              <div class="form-group">
+                  <label class="control-label" for="form-email">E-Mail Address</label>
+                  <input
+                      id="form-email"
+                      name="email"
+                      class="form-control"
+                      type="email"
+                      placeholder="example@domain.com"
+                      ng-model="currentContact.email"
+                      ng-minlength="3"
+                      required
+                  >
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label" for="form-phone">Phone</label>
+                  <input
+                      id="form-phone"
+                      name="phone"
+                      class="form-control"
+                      type="tel"
+                      placeholder="000-000-0000"
+                      ng-model="currentContact.phone"
+                      ng-pattern="/^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/"
+                      required
+                  >
+              </div>
+             
+          </form>
+        </div>
+        <div class="col-sm-4 list-group-item" ng-controller="uploadTestCtrl">
+            <div class="row text-center">
+                <img ng-src="{{previewImage}}" data-src="holder.js/100%x180" alt="100%x180" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcyIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MiAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUzNGYwNjk1OTQgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTM0ZjA2OTU5NCI+PHJlY3Qgd2lkdGg9IjE3MiIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI2MC4wNDY4NzUiIHk9Ijk0LjM5Njg3NSI+MTcyeDE4MDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="height: 180px; width: 200;">
+                <br>
+                {{uploadFile.name}}
+            </div>
+            <div class="row text-center">
+                <form class="form">
+                    <div class="form-group">
+                        <file-field class="btn navbar-btn" ng-model="uploadFile" ng-class="{'btn-success':uploadFile}" preview="previewImage">Upload Image</file-field>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+            
+  </div>
+  <div class="row">
+          <p ng-show="!form.modified">
+            <em>Nothing to save or reset. Introduce some changes first!</em>
+          </p>
+          
+          <p ng-show="form.$invalid">
+              <em>Can't save. Please correct form validation errors!</em>
+          </p>
+          
+          <a ng-if="path === '/add' " ng-href="#/contact-info/{{ contacts.length - 1 }}" ng-click="addContact()">
+            <button type="submit" ng-disabled="!form.modified || form.$invalid" class="btn btn-success">
+             <span class="glyphicon glyphicon-ok"></span>
+             <span> Add</span>
+            </button>
+          </a>
+
+          <a ng-if="path !== '/add'" ng-href="#/contact-info/{{index}}">
+            <button type="submit" ng-disabled="!form.modified || form.$invalid" class="btn btn-success">
+             <span class="glyphicon glyphicon-ok"></span>
+             <span> Save Edits</span>
+            </button>
+          </a>
+
+          <a href="#/">
+            <button class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove"></span><span>  Cancel</span>
+            </button>
+          </a>
+  </div>    
+</div>

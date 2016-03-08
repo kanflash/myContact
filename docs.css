@@ -1,0 +1,13 @@
+.bs-docs-footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 100px;
+    color: #fff;
+    text-align: center;
+    background-color: #f0ad4e;
+  
+}
+@media (min-width: 768px)
+.bs-docs-footer {
+    text-align: left;
+}

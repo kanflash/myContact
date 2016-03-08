@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>AngularJS contact list</title>
+    
+    
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="docs.css">
+
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  </head>
+
+  <body>
+
+  <div class="global-wrapper" ng-app="myApp">
+
+  <!-- nav section -->
+  <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner"> 
+    <nav class="navbar navbar-default" ng-controller="navCtrl">
+      <div class="container-fluid" style="background-color: #f0ad4e">
+        <div class="nav-header">
+          <a href="#" class="navbar-brand hidden-xs" style="color:#fff">My Contacts</a>
+          <ul class="nav navbar-nav">
+            <li ng-repeat="navLink in nav.navItems" ng-class="{active : $index === nav.selectedIndex}">
+              <a class="text-center" ng-click="nav.navClick($index)" ng-href="#/{{navLink}}">{{navLink}}</a>
+            </li>
+          </ul>
+      	</div>
+      </div>
+    </nav>
+  </header>
+    
+  <div class="container">
+    <div class="row  panel-primary" ng-controller="homeCtrl">
+      
+
+      <!--     contact list   	 -->
+      <div class="col-xs-4 ">
+          <div class="row">
+            <h4 class="navbar-left">Contacts:</h4>
+            <div class="navbar-right">
+              <a ng-href="#/add">
+            	  <button class="btn btn-primary btn-sm">
+            		<span class="glyphicon glyphicon-plus"></span><span> New</span>
+            	  </button>
+            	</a>
+          	</div>
+        	</div>
+        	<ul class="row list-group">
+            <li class="contact list-group-item container-fluid" ng-repeat="contact in contacts | orderBy: 'name' | filter: searchText "></li>
+          </ul> 
+       </div>
+      
+      <!--   ng-view below       -->
+      <div class="col-xs-8">
+        
+        <div class="">
+          <h4>ADD OR EDIT CONTACT (FULL NAME)</h4>
+        </div>
+        
+        <div class="list-group" style="padding-left:15px">
+          <div ng-view></div>
+        </div>
+      </div>
+      
+        
+    </div>
+  </div>
+  
+  <footer class="bs-docs-footer" role="contentinfo"> 
+    <div class="container"> 
+    <p>Footer</p> 
+    </div> 
+  </footer>
+   
+  </div>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js'></script>
+	  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js'></script>
+	  <script src="https://rawgit.com/betsol/angular-input-modified/master/dist/angular-input-modified.js"></script>
+    <script src="https://rawgit.com/betsol/angular-form-validation/master/dist/angular-form-validation.js"></script>
+    <!--<script src="angular-bootstrap-file-field.min.js"></script>-->
+    
+
+  <script src="index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

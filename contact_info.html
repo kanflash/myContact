@@ -1,0 +1,18 @@
+<div class="list-group-item">
+	<h3 class="text-center">{{currentContact.fname}} {{currentContact.lname}}</h3>
+	<p ng-controller="dtCtrl">birth day: {{currentContact.dt | date:'MM/dd/yyyy'}}</p>
+	<p>company: {{currentContact.company}}</p>
+	<p>email: <a ng-href="{{currentContact.email}}">{{currentContact.email}}</a></p>
+	<p>phone: {{currentContact.phone}}</p>
+	
+	
+	<a ng-href="#/edit/{{contacts.indexOf(currentContact)}}">
+	  <button class="btn btn-success">
+		<span class="glyphicon glyphicon-pencil"></span><span> Edit</span>
+	  </button>
+	</a>
+
+	<a href="#/"><button class="btn btn-danger" ng-click="removeContact(currentContact)">
+	  <span class="glyphicon glyphicon-remove"></span><span> Remove</span>
+	</button></a>
+</div>

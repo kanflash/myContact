@@ -1,0 +1,14 @@
+
+  <h5 class="navbar-left">{{contact.fname}} {{contact.lname}}</h5>
+  <div class="navbar-right">
+  <a ng-href="#/edit/{{contacts.indexOf(contact)}}">
+	  <button class="btn btn-primary btn-sm">
+		<span class="glyphicon glyphicon-pencil"></span><span> Edit</span>
+	  </button>
+	</a>
+	<a href="#/"><button class="btn btn-danger btn-sm" ng-click="removeContact(contact)">
+	  <span class="glyphicon glyphicon-remove"></span><span> Remove</span>
+	</button></a>
+	</div>
+
+
